@@ -36,7 +36,6 @@ public class JunitTest {
 		if (a==1) {
 			System.out.println(11111);
 		}
-		System.out.println(blog);
 	}
 
 	@Test
