@@ -28,15 +28,11 @@ public class JunitTest {
 		System.out.println(blog);
 	}
 	
-	@Test
-	public void test02() {
-		List<Blog> blog = blogService.getAllBlog();
-		System.out.println(blog);
-	}
 	
 	@Test
 	public void test02() {
 		List<Blog> blog = blogService.getAllBlog();
+		int a = 1;
 		System.out.println(blog);
 	}
 
