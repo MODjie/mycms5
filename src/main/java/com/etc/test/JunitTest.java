@@ -33,6 +33,9 @@ public class JunitTest {
 	public void test02() {
 		List<Blog> blog = blogService.getAllBlog();
 		int a = 2;
+		if (a==1) {
+			System.out.println(11111);
+		}
 		System.out.println(blog);
 	}
 
