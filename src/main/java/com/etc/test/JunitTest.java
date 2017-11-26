@@ -32,7 +32,7 @@ public class JunitTest {
 	@Test
 	public void test02() {
 		List<Blog> blog = blogService.getAllBlog();
-		int a = 1;
+		int a = 2;
 		System.out.println(blog);
 	}
 
