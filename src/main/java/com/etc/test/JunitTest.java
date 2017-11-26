@@ -34,10 +34,15 @@ public class JunitTest {
 		System.out.println(blog);
 	}
 	
+	@Test
+	public void test02() {
+		List<Blog> blog = blogService.getAllBlog();
+		System.out.println(blog);
+	}
 
 	@Test
 	public void test03() {
-		blogService.insertBlog(new Blog(1, "事务", "插入日志"));
+		blogService.insertBlog(new Blog(1, "脢脗脦帽", "虏氓脠毛脠脮脰戮"));
 	}
 	@Test
 	public void test04() {
