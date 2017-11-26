@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.entity.BlogDao">
+	<select id="selectBlog" resultType="Blog">
+		select * from blog where blogId = #{id}
+	</select>
+	<select id="selectAllBlog" resultMap="blogMap">
+		select * from blog
+	</select>
+	<select id="selectBlogByPage" resultType="Blog">
+		select * from blog limit #{start},#{pageSize}
+	</select>
+	<select id="selectBlogByTitle" resultMap="blogMap">
+		select * from blog where blogTitle like concat('%',#{title},'%');
+	</select>
+	<!-- 动态sql -->
+	<select id="selectAllBlogDymSql" resultMap="blogMap">
+		select * from blog
+		<where>
+			<if test="title!=null">blogTitle like concat('%',#{title},'%')</if>  
+			<if test="content!=null">and blogContent like concat('%',#{content},'%')</if>   
+		</where>	
+	</select>
+	
+	<insert id="insertBlog" useGeneratedKeys="true" keyProperty="blogId">
+		insert into blog values(null,#{blogTitle},#{blogContent})
+	</insert>
+	<update id="updateBlog">
+		update blog set blogTitle=#{blogTitle},blogContent=#{blogContent} where
+		blogId = #{blogId}
+	</update>
+	<!-- 动态更新 -->
+	<update id="updateBlogDymSql">
+		update blog 
+		<set>
+		    <if test="title!=null">blogTitle=#{title},</if>
+		    <if test="content!=null">blogContet=#{content},</if>
+		</set>
+		where blogId = #{id}
+	</update>
+	
+	<delete id="deleteBlog">
+	    delete from blog where blogId = #{deleteId}
+	</delete>
+	
+	<delete id="deleteBlogDymSql">
+	    delete from blog where blogId in
+	    <foreach collection="list" open="(" separator="," close=")" item="item">
+	        #{item}
+	    </foreach>
+	</delete>
+	
+	<resultMap type="Blog" id="blogMap">
+	    <id property="id" column="blogId"/>
+	    <result property="title" column="blogTitle"/>
+	    <result property="content" column="blogContent"/>
+	</resultMap>
+</mapper>
